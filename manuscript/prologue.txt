@@ -1,0 +1,225 @@
+# Testing front-end code sucks
+
+Testing back-ends is easy. You take your language of choice, pair it with your favourite framework, write some tests, and hit “run.” Your console says “Yay! It works!” Your continuous integration service runs your tests on every push, life is great.
+
+Sure, test-driven development (TDD) is weird at first, but a predictable environment, multiple test runners, test tooling baked into frameworks, and continuous integration support, make life easy. Five years ago I thought tests were the solution to every problem I’ve ever had.
+
+Then Backbone got big.
+
+We all switched to front-end MVC. Our testable backends became glorified database servers. Our most complicated code moved into the browser. And our apps were no longer testable in practice.
+
+That’s because testing front-end code and UI components is kinda hard.
+
+## Unit tests almost don't suck
+
+It’s not so bad if all we want is to check that our models behave well. Or, that calling a function will change the right value. All we need to do for unit testing is:
+
+ * Write well-formed, isolated modules.
+ * Use Jasmine or Mocha or whatever to run functions.
+ * Use a test runner, like Karma or Chutzpah.
+
+That’s it. Our code is unit tested.
+
+It used to be that running front-end tests was the hard part. Every framework had its own ideas and in most cases you ended up with a browser window that you would manually refresh every time you wanted to run the tests. Of course, you would always forget. At least, I know I did.
+
+In 2012, Vojta Jina released the [Karma runner](http://karma-runner.github.io/) (called Testacular at the time). With Karma, front-end testing becomes a full citizen of the tool chain. Our tests run in a terminal or on a continuous integration server, they re-run themselves when we change a file, and we can even test our code in multiple browsers at the same time.
+
+What more could we wish for? Well, to *actually* test our front-end code.
+
+## We need more than unit tests
+
+Unit testing is great: it’s the best way to see if an algorithm does the right thing every time, or to check our input validation logic, or data transformations, or any other isolated operation. Unit testing is perfect for fundamentals.
+
+But front-end code isn’t about manipulating data. It’s about user events and rendering the right views at the right time. Front-ends are about users.
+
+Here’s what we want to be able to do:
+
+ * Test user events
+ * Test the response to those events
+ * Make sure the right things render at the right time
+ * Run tests in many browsers
+ * Re-run tests on file changes
+ * Work with continuous integration systems like Travis
+
+## What the real world looks like
+
+We want all those things, but they are hard and annoying to achieve. Frontends are fickle beasts and they aren't easy to tame.
+
+Especially true in startups and other fast-paced environments where it never seems like there's enough time for proper engineering. Ship now, fix later. Get it done.
+
+So what do we do? We know unit tests don't really test our app, so we never set them up, and we don't think we have time to write more serious tests. Not when the requirements are going to change three weeks from now anyway.
+
+We click. A lot. Clicky click. Clickety click click.
+
+Change a file, refresh the page, go through the flow, find the bug. Fix the bug, refresh the page, go through the flow, bug still there. Fix the big, refresh the page, oh look that's a new bug now.
+
+If you're lucky, this cycle takes only a few seconds every time you update something. Sometimes it takes a minute. I've had as high as five minutes per test round.
+
+That was painful.
+
+And what always happens with this kind of approach is that your testing is bad. Like really *really* bad. The kind of bad where you only test the specific bug you're trying to fix.
+
+Then you merge your branch, push to preproduction, and your PM sees the bug that you fixed last week has suddenly stopped working. If you're lucky.
+
+Usually support sends you an email from an irate customer saying *"Yo guys, didn't you fix this last week? Why isn't it working?"*
+
+Well ... we *did* fix it, but then we broke it again when we fixed that other thing. Crap.
+
+I've even had situations where I worked on a branch, and fixed a bug, and everything worked. And I worked on a different bug in a different branch, and everything worked. Happily, the branches got merged, and there were no conflicts. Yay!
+
+In unison the branches didn't work. One of them broke the bugfix on the other. We only found out when a user complained.
+
+Unavoidable. Right?
+
+No.
+
+# Why you need tests
+
+That nastiness with click testing and code working in isolation, but not when put together, can be avoided with a proper test suite. The kind that runs through your tests on every file change, *actually* tests the whole app, tries several browsers, and maybe even blocks you from merging code that doesn't pass tests.
+
+A test suite like that will make your life better and your job more fun. I promise.
+
+## Do less, get more done, save time
+
+As you can imagine, clicking around takes a lot of time.
+
+Making sure it works only takes a few seconds, sure. But you spend a couple of seconds switching from your editor to your browser, a second to refresh the page, a few seconds to change data to its previous state, and a few seconds to navigate to the part you're testing.
+
+God help you, if you notice that Slack notification from your boss, or that your girlfriend sent a message. Off you go into the internet rabbit hole, and all you wanted was to see if your bugfix finally works.
+
+Those 30 seconds per test add up to a lot of time. Half an hour for every ten changes you want to test. Maybe I'm paranoid, but I like to check my code every two or three times I save. If I had to guess, I'd say 30 seconds go to testing for every 3 minutes of coding.
+
+That's 10 minutes per hour. More than an hour per day for just clicking around the interface.
+
+What could you do with an extra hour in the day?
+
+And consider this, that's an hour a day spent just checking the code that's right in front of my face. Making sure you didn't break any seemingly unrelated code can take hours if not days.
+
+I once worked on a large-ish app that had an amazing quality assurance (QA) team instead of automated tests. It took them *3 days* just to get a rough estimate of the app. No detailed bug reports, just a *"Yup, nothing major looks broken."*.
+
+Finding detailed bugs took over a week.
+
+Good automated tests can do my job in a few seconds, and the QA team's job in an hour. That's a pretty good bang for buck if you ask me!
+
+How much does an hour of engineer time go for these days? What about a few days of test engineer time? Hundreds of dollars? Thousands?
+
+## Documentation that ensures its own correctness
+
+Another benefit of tests is that they document the code they're testing. And they tell you when they're out of date.
+
+Documentation often comes in one of three types:
+
+1. External documents
+2. Code comments
+3. Self-documenting code
+
+We can immediately rule out external documents as good documentation. When was the last time you remembered to check the docs when you didn't know what a function does? Exactly, never.
+
+Why? Because the docs are always out of date. Written once, and never updated. Often their very existence forgotten.
+
+Code comments are better because they live with the code they are describing. They too often go stale. How often have you started like this:
+
+{linenos=off,lang=js}
+    let count = 5;
+
+    // add 5 empty list entries to the page
+    _.range(count).map((i) => $("ul").append("<li></li>"))
+
+		// populate the list with data
+		$("li").each((i, $el) => $el.html(getData(i))
+
+The code does add 5 empty `<li>` elements to the page, more specifically the `<ul>` element, then populates them.
+
+A few months later that same code looks like this:
+
+{linenos=off,lang=js}
+    let count = 15;
+
+    // add 5 empty list entries to the page
+		let getBetterData = (i) => {
+	      let s = getKeyData(i) + " -> " + getValData(i);
+				return `Mapping: ${s}`;
+    }
+
+		_.range(count+5).each((i, $el) => {
+        $ul.append($("li").html(getBetterData(i));
+    }
+
+This code adds 20 elements that seem to show key-value mappings of some data. Maybe. Most likely. The only comment in this code is of no use because nobody updated it.
+
+As for self-documenting code ... don't make me laugh. I've been trying to write self-documenting code ever since I first read about it in Uncle Bob's Clean Code ten years ago. To this day I have not been able to write code that I can understand at first glance after it sits unwatched for two months.
+
+Starting to believe the task is impossible.
+
+But having tests helps. Tests not only describe your code, they tell you whether it does what they say it does. If the implementation drifts away from the test, the test will tell you. If the requirements change, and the test is updated, it will tell you if the code still works.
+
+This is very useful documentation:
+
+{linenos=off,lang=js}
+    describe("that code above", () => {
+				it("should add 20 li", () => // ...);
+				it("should show mappings", () => // ...);
+				it("should display data from someGlobalVar", () => // ...);
+				it("shouldn't clean old entries when rerun", // ...);
+		});
+
+The tests describe our code with words, tell us what it should do in the test itself, then make sure the code does that. It's beautiful.
+
+## Fix it once, know it works forever
+
+When you're debugging, life is a mess. First you have to understand what the user was expecting to happen when they said *"It doesn't work!"*. Then you have to find a reliable way to reproduce the bug.
+
+Usually it's a combination of user data, the state of their computer (hello browser versions), and the state of your app. What screen they were on, which series of steps they took to get there, how long it's been running, that sort of thing.
+
+You might get lucky and reproduce on the first try. Or you might have to spend a few hours rummaging about the production server, trying different things locally, and asking the user follow up questions.
+
+Then what?
+
+You're about to run through the reproduction steps a bazillion times before you fix the bug. 9 times out of 10, they aren't easy steps to do because it's juuuuuuust the right combination of everything that triggers the bug. Wonderful.
+
+After a few hours you will have fixed the bug, gotten your fix code reviewed, merged into master, and deployed on production.
+
+Two months later: same bug report. Your fix stopped working.
+
+If only you had written a test that reproduces your steps. 
+
+First, you'd save a lot of clicky time while fixing the bug. You take minutes to set up the data and do the steps just right. A test does it in a few milliseconds.
+
+Second, your test runner would scream bloody murder when you broke the fix by accident. The very instant you write some code that breaks the fix, you'd know. You'd know the exact line, the exact function call.
+
+That's much easier to fix than a month's worth of new code.
+
+This is called regression testing by the way. In my experience, it is the most useful type of testing. A safety net of sorts.
+
+## Peace of mind
+
+Ultimately, a good test suite is there to give you peace of mind. That's the real job it has.
+
+When automated tests cover a good enough percentage of your code, you can be sure that the code behaves the way *you think it should*. It means that your code works for the primary case, it means that it works for every corner case you wrote a test for, it means that all the APIs behave the way they're meant to.
+
+This is especially important in two situations:
+
+1. When you're using dynamically typed languages
+2. When you have other people on the team
+
+JavaScript is a dynamically typed language. That means you won't know you called a function with the wrong parameters until somebody clicks the thing and executes the code that calls that function with the wrong parameters.
+
+When that happens, your app breaks. Having tests that execute that code before your users, can tell you that you're using the wrong function calls. Sometimes that's because you made a mistake, sometimes it's because the function changed since you wrote the code.
+
+Which leads to the second point: as soon as you can't keep your whole app in your head at once, you need tests.
+
+Other people can change code from right under your feet and forget to tell you. *You* might change something and forget another part of the codebase is using it. When was the last time you or anyone else on your engineering team ran through every single sequence of actions a user could do?
+
+Yeah, I thought so. Don't feel bad, it's okay. I'm certain I don't even *know* all the pathways users could follow in my code. But man are they creative sometimes.
+
+Point is, a lot can happen. Tests make "a lot" less likely to break things. That means more brain cycles free to write the code.
+
+# How to decide what to test
+
+## Test the data model logic
+
+## Test the views
+
+## Test end-to-end
+
+# How React makes all this easier

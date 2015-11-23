@@ -18,7 +18,7 @@ Testing is more complicated than making simple visualizations, but I've tried to
 
 ## Why you should read React Testing
 
-After an hour with React Testing, you'll know why testing your front-end code is a good idea, and you'll know how React makes it easier than ever. You're going to understand what to test, how to decide which tests to write, and which testing approach fits your app best at which stage of development.
+After an hour with React Testing, you'll know why testing your front-end code is a good idea, and you'll know how React makes it easier than ever. You're going to understand what to test, how to decide which tests to write, and which testing approach best fits your app at which stage of development.
 
 You're going to understand why testing makes your life easier, and how to do it.
 
@@ -28,7 +28,14 @@ I'm going to assume you already know how to code and that you're great with Java
 
 I'm also going to assume some knowledge of React and ES6 because that will make the book shorter. Don't worry, if you've never used them before - I'm still going to explain everything we use in the examples.
 
-This book is not for you, if you're looking for something to help you stare deep into the abyss of React internals.
+And don't worry, if you don't know much about testing. I'm going to use some scary-sounding terms, but by the end of the book, you'll have an ingrained understanding of what they all mean. Here's a quick glossary:
+
+ * *Test Driven Development*, or TDD, is the kind of development where you write tests before you write the code that makes them pass
+ * a *Unit test*, is the kind of test that makes sure a small well-defined piece of functionality works like it's supposed to
+ * an *Integration test*, is the kind of test that makes sure several pieces of code work well together
+ * an *end-to-end test*, is the kind of test that tests your whole application from the perspective of a user
+
+I hope that makes those terms less scary. You'll have a better understanding of what they mean by the end of this book.
 
 ## How to read this book
 

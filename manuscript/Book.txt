@@ -1,9 +1,7 @@
 introduction.txt
-why-testing.txt
-what-to-test.txt
+prologue.txt
 environment.txt
 test-the-logic.txt
 test-the-views.txt
 end-to-end-testing.txt
 conclusion.txt
-
