@@ -1,4 +1,61 @@
+# Introduction
 
-# Hell, world
+Hi, I wrote this book for you as a follow-on experiment. In April 2015, we tested the theory that technical content works better as a short book than it does a long article.  
 
-Yes, hello!
+Our premise was that after a post broaches some 700 words, readers wander off to a different tab and never return. This sucks for me as a writer, but it sucks even more for you, the reader. 
+
+You can only learn the thing, if you read the thing.
+
+1000 readers, and many *"Your book was perfect for me because it was so focused!"* emails later, I think [React+d3.js](http://swizec.com/reactd3js) has been a strong indication that readers do in fact value a short book more than a long article.
+
+Now there's a new theory to test: Can you do that twice?
+
+So here I am, writing a new book on a very focused topic - React Testing. I’m counting on you to take some time away from the internet. To sit down and read. To follow the examples, and to *learn*.
+
+You’re counting on me to have taken more care in crafting this than I would a blogpost or an article. And I have.
+
+Testing is more complicated than making simple visualizations, but I've tried to keep this book as short as possible. You should be able to read through in an hour. Trying out the example code might take longer.
+
+## Why you should read React Testing
+
+After an hour with React Testing, you'll know why testing your front-end code is a good idea, and you'll know how React makes it easier than ever. You're going to understand what to test, how to decide which tests to write, and which testing approach fits your app best at which stage of development.
+
+You're going to understand why testing makes your life easier, and how to do it.
+
+## What you need to know
+
+I'm going to assume you already know how to code and that you're great with JavaScript. Many better books have been written to teach you JavaScript from scratch.
+
+I'm also going to assume some knowledge of React and ES6 because that will make the book shorter. Don't worry, if you've never used them before - I'm still going to explain everything we use in the examples.
+
+This book is not for you, if you're looking for something to help you stare deep into the abyss of React internals.
+
+## How to read this book
+
+Relax. Breathe. You’re here to learn. I’m here to teach. I promise Twitter will wait and so will Facebook. 
+
+Just you and some fun code. To get the most out of this material I suggest two things:
+
+1. Try the example code yourself. Don’t just copy paste, type it over. Execute frequently. If something doesn’t fit together, look at the full working project on Github, [here](https://github.com/Swizec/h1b-software-salaries), or the zip files that came with the book
+2. If you already know something, skip that section. You’re awesome.
+
+React Testing is based on code samples. They look like this:
+
+{linenos=off,lang=jsx}
+     let foo = 'bar';
+
+Added code looks like this:
+
+{linenos=off,lang=jsx}
+     let foo = 'bar’;
+     // leanpub-start-insert
+     foo += 'this is added’;
+     // leanpub-end-insert
+
+Removed code looks like this:
+
+{linenos=off,lang=jsx}
+     let foo = 'bar';
+     // leanpub-start-delete
+     foo += 'this is added';
+     // leanpub-end-delete
