@@ -1,49 +1,49 @@
 # Introduction
 
-Hi, I wrote this book for you as a follow-on experiment. In April 2015, we tested the theory that technical content works better as a short book than it does a long article.  
+Hello reader. I wrote this book for you as a follow-up experiment. In April 2015, we tested the theory that technical content works better as a short book than it does as a long article.  
 
-Our premise was that after a post broaches some 700 words, readers wander off to a different tab and never return. This sucks for me as a writer, but it sucks even more for you, the reader. 
+Our premise was that after a post surpases some 700 words, readers wander off to a different tab and never return. This sucks for me as a writer, but it sucks even more for you, the reader.
 
-You can only learn the thing, if you read the thing.
+You can only learn the thing if you read the thing.
 
-1000 readers, and many *"Your book was perfect for me because it was so focused!"* emails later, I think [React+d3.js](http://swizec.com/reactd3js) has been a strong indication that readers do in fact value a short book more than a long article.
+1000 readers and many *"Your book was perfect for me because it was so focused!"* emails later, I think [React+d3.js](http://swizec.com/reactd3js) has been a strong indication that readers value a short book more than a long article.
 
-Now there's a new theory to test: Can you do that twice?
+Now there's a new theory to test: Can it be done twice?
 
-So here I am, writing a new book on a very focused topic - React Testing. I’m counting on you to take some time away from the internet. To sit down and read. To follow the examples, and to *learn*.
+So here we are, exploring a new book on a very focused topic - React Testing. Like the first time, I’m counting on you to take some time away from the internet to sit down and read. I'm hoping you'll take the time to follow the examples and to *learn*.
 
-You’re counting on me to have taken more care in crafting this than I would a blogpost or an article. And I have.
+You’re counting on me to have taken more time and care in crafting this than I would have a blog post or an article. I assure you that I have.
 
-Testing is more complicated than making simple visualizations, but I've tried to keep this book as short as possible. You should be able to read through in an hour. Trying out the example code might take longer.
+Testing is more complicated than making simple visualizations, but I've tried to keep this book as short as possible. My goal is for you to be able to read through in an hour. Trying out the example code might take a bit longer.
 
 ## Why you should read React Testing
 
-After an hour with React Testing, you'll know why testing your front-end code is a good idea, and you'll know how React makes it easier than ever. You're going to understand what to test, how to decide which tests to write, and which testing approach best fits your app at which stage of development.
+After an hour with React Testing, you'll know why testing your front-end code is a good idea, and you'll know how React makes it easier than ever. You're going to understand what to test, which tests to write, and which testing approach best fits your app at which stage of development.
 
-You're going to understand why testing makes your life easier, and how to do it.
+You're going to understand why and how testing makes your life easier.
 
 ## What you need to know
 
 I'm going to assume you already know how to code and that you're great with JavaScript. Many better books have been written to teach you JavaScript from scratch.
 
-I'm also going to assume some knowledge of React and ES6 because that will make the book shorter. Don't worry, if you've never used them before - I'm still going to explain everything we use in the examples.
+I'm also going to assume that you have some knowledge of React and ES6 because that will make the book shorter. Don't worry if you've never used them before - I'm  going to explain everything we use in the examples.
 
-And don't worry, if you don't know much about testing. I'm going to use some scary-sounding terms, but by the end of the book, you'll have an ingrained understanding of what they all mean. Here's a quick glossary:
+Likewise, don't worry if you don't know much about testing. I'm going to use some scary-sounding terms, but by the end of the book, you'll have an ingrained understanding of what they all mean. For starters, here's a quick glossary:
 
- * *Test Driven Development*, or TDD, is the kind of development where you write tests before you write the code that makes them pass
- * a *Unit test*, is the kind of test that makes sure a small well-defined piece of functionality works like it's supposed to
- * an *Integration test*, is the kind of test that makes sure several pieces of code work well together
- * an *end-to-end test*, is the kind of test that tests your whole application from the perspective of a user
+ * *Test Driven Development*, or TDD, is the kind of development where you write tests before you write the code that makes them pass;
+ * a *Unit test* is the kind of test that makes sure a small, well-defined piece of functionality works like it should;
+ * an *Integration test* is the kind of test that makes sure several pieces of code work well together; and
+ * an *end-to-end test* is the kind of test that tests your whole application from the perspective of a user.
 
 I hope that makes those terms less scary. You'll have a better understanding of what they mean by the end of this book.
 
 ## How to read this book
 
-Relax. Breathe. You’re here to learn. I’m here to teach. I promise Twitter will wait and so will Facebook. 
+Relax. Breathe. You’re here to learn. I’m here to teach. I promise Twitter will wait, and so will Facebook.
 
-Just you and some fun code. To get the most out of this material I suggest two things:
+It's just you, me, and some great code. To get the most out of this material, I suggest two things:
 
-1. Try the example code yourself. Don’t just copy paste, type it over. Execute frequently. If something doesn’t fit together, look at the full working project on Github, [here](https://github.com/Swizec/h1b-software-salaries), or the zip files that came with the book
+1. Try the example code yourself. Don’t just copy-paste it; type it over. Execute it frequently. If something doesn’t fit together, look at the full working project on Github [here](https://github.com/Swizec/h1b-software-salaries), or check out the zip files that came with the book.
 2. If you already know something, skip that section. You’re awesome.
 
 React Testing is based on code samples. They look like this:
